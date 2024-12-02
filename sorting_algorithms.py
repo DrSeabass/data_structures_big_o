@@ -1,10 +1,13 @@
-from random import shuffle
+from random import shuffle, randint
 
 DEFAULT_SIZE = 10
+MAX_INT = 10000
+MIN_INT = 0
 sorted_data = None
 reversed_order = None
 shuffled = None
 empty = []
+random_values = []
 
 
 def default_comparitor(a,b):
@@ -18,6 +21,8 @@ def make_example_inputs():
     shuffled = sorted_data.copy()
     reversed_order.reverse()
     shuffle(shuffled)
+    for i in range(DEFAULT_SIZE):
+        random_values.append(randint(MIN_INT, MAX_INT))
 
     
 def is_sorted(input, comparitor=default_comparitor):
