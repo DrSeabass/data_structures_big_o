@@ -22,18 +22,28 @@ def default_comparator(a,b):
 
 
 def reset_counter():
+    global comparison_calls
     comparison_calls = 0
 
 
+def make_random_input(size=DEFAULT_SIZE, samples=5):
+    ret = []
+    for _ in range(samples):
+        this_list = []
+        for _ in range(size):
+            this_list.append(randint(MIN_INT, MAX_INT))
+        ret.append(this_list)
+    return ret
+
+
 def make_example_inputs():
-    global sorted_data, reversed_order, shuffled
+    global sorted_data, reversed_order, shuffled, random_values
     sorted_data = list(range(DEFAULT_SIZE))
     reversed_order = sorted_data.copy()
     shuffled = sorted_data.copy()
     reversed_order.reverse()
     shuffle(shuffled)
-    for i in range(DEFAULT_SIZE):
-        random_values.append(randint(MIN_INT, MAX_INT))
+    random_values = make_random_input(samples=1)[0]
 
 
 if __name__ == "__main__":
