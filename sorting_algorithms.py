@@ -60,7 +60,10 @@ def merge_sort(input, comparitor=default_comparitor):
     raise NotImplemented
 
 
-def radix_sort(input, comparitor=default_comparitor):
+def counting_sort(input):
+    raise NotImplemented
+
+def radix_sort(input):
     raise NotImplemented
     
 
