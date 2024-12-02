@@ -60,11 +60,32 @@ def merge_sort(input, comparitor=default_comparitor):
     raise NotImplemented
 
 
-def counting_sort(input):
-    raise NotImplemented
+def counting_sort(input, radix):
+    # TODO / NOTE: This sort is non-destructive (the rest are!)
+    buckets = [[], [], [], [], [], [], [], [], [], [],] # one for each digit in 0 - 9
+    # Bucketize input based on radix
+    saw_non_zero = False
+    for el in input:
+        bucket = el // radix
+        saw_non_zero = saw_non_zero or bucket > 0
+        buckets[bucket].append(el)
+    
+    # reconstruct output from buckets
+    output = []
+    for bucket in buckets:
+        output.extend(bucket)
+    return output, saw_non_zero
+
 
 def radix_sort(input):
-    raise NotImplemented
+    radix = 1
+    finished = False
+    next_list = input
+    while not finished:
+        next_list, saw_non_zero = counting_sort(next_list, radix)
+        radix *= 10
+        finished = not saw_non_zero
+    return next_list
     
 
 if __name__ == "__main__":
