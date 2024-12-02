@@ -66,7 +66,6 @@ def merge_sort(input, comparitor=default_comparitor):
 
 
 def counting_sort(input, radix):
-    # TODO / NOTE: This sort is non-destructive (the rest are!)
     buckets = [[], [], [], [], [], [], [], [], [], [],] # one for each digit in 0 - 9
     # Bucketize input based on radix
     saw_non_zero = False
@@ -90,6 +89,11 @@ def radix_sort(input):
         next_list, saw_non_zero = counting_sort(next_list, radix)
         radix *= 10
         finished = not saw_non_zero
+    # The other sorts are destructive / in-place
+    # Our implementation of counting sort doesn't allow for this
+    # We overwrite the original input to get matching destructive behavior
+    for i in range(len(input)):
+        input[i] = next_list[i]
     return next_list
     
 
