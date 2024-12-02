@@ -9,10 +9,17 @@ reversed_order = None
 shuffled = None
 empty = []
 random_values = []
+comparison_calls = 0
 
 
 def default_comparitor(a,b):
+    global comparison_calls
+    comparison_calls += 1
     return a < b
+
+
+def reset_counter():
+    comparison_calls = 0
 
 
 def make_example_inputs():
