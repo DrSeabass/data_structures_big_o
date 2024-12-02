@@ -18,7 +18,7 @@ class Split():
             return self, None
 
     @staticmethod  
-    def merge(split_1, split_2, input_list=None, comparitor=None):
+    def merge(split_1, split_2, input_list=None, comparator=None):
         delta = split_2.start - split_1.end
         if delta != 1:
             raise ValueError(f"Splits must be adjacent, {split_1} and {split_2} are not.")
@@ -28,7 +28,7 @@ class Split():
             # TODO -- do this in place
             merged = []
             while index_2 <= split_2.end and index_1 <= split_1.end:
-                if comparitor(input_list[index_1], input_list[index_2]):
+                if comparator(input_list[index_1], input_list[index_2]):
                     merged.append(input_list[index_1])
                     index_1 += 1
                 else:
@@ -50,12 +50,12 @@ class Split():
         return f"[{self.start}, {self.end}]"
     
 
-def merge_sort(input, comparitor, split=None):
+def merge_sort(input, comparator, split=None):
     if split is None:
         split = Split(0, len(input)-1)
     left, right = split.split()
     if right is None:
         return # base case, single element
-    merge_sort(input, comparitor, split=left)
-    merge_sort(input, comparitor, split=right, )
-    Split.merge(left, right, input_list=input, comparitor=comparitor)
+    merge_sort(input, comparator, split=left)
+    merge_sort(input, comparator, split=right, )
+    Split.merge(left, right, input_list=input, comparator=comparator)

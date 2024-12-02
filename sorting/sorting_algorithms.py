@@ -12,7 +12,7 @@ random_values = []
 comparison_calls = 0
 
 
-def default_comparitor(a,b):
+def default_comparator(a,b):
     global comparison_calls
     comparison_calls += 1
     return a < b

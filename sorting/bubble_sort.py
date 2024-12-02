@@ -1,4 +1,4 @@
-def bubble_sort(input, comparitor):
+def bubble_sort(input, comparator):
     items = len(input)
     if items == 0:
         return
@@ -9,7 +9,7 @@ def bubble_sort(input, comparitor):
         for i in range(1, items):
             tmp_a = input[prev]
             tmp_b = input[i]
-            if not comparitor(tmp_a, tmp_b):
+            if not comparator(tmp_a, tmp_b):
                 input[prev] = tmp_b
                 input[i] = tmp_a
                 sorted_this_pass = False
