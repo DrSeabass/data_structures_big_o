@@ -14,7 +14,7 @@ def counting_sort(input, radix):
     return output, saw_non_zero
 
 
-def radix_sort(input):
+def radix_sort(input, comparator):
     radix = 1
     finished = False
     next_list = input
