@@ -33,7 +33,19 @@ def is_sorted(input, comparitor=default_comparitor):
     return True
 
 
+def bogo_sort(input, comparitor=default_comparitor):
+    raise NotImplemented
+
+
 def bubble_sort(input, comparitor=default_comparitor):
+    raise NotImplemented
+
+
+def merge_sort(input, comparitor=default_comparitor):
+    raise NotImplemented
+
+
+def radix_sort(input, comparitor=default_comparitor):
     raise NotImplemented
     
 
