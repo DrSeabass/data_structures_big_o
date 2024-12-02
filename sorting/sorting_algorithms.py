@@ -1,5 +1,8 @@
 from random import shuffle, randint
-from bogo_sort import is_sorted
+from bogo_sort import is_sorted, bogo_sort
+from bubble_sort import bubble_sort
+from merge_sort import merge_sort
+from radix_sort import radix_sort
 
 DEFAULT_SIZE = 10
 MAX_INT = 10000
@@ -35,7 +38,15 @@ def make_example_inputs():
 
 if __name__ == "__main__":
     make_example_inputs()
-    print("sorted  :", sorted_data, is_sorted(sorted_data))
-    print("reverse :", reversed_order, is_sorted(reversed_order))
-    print("shuffled:", shuffled, is_sorted(shuffled))
-    print("empty   :", empty, is_sorted(empty))
+    print("sorted  :", sorted_data, is_sorted(sorted_data, default_comparator))
+    print("reverse :", reversed_order, is_sorted(reversed_order, default_comparator))
+    print("shuffled:", shuffled, is_sorted(shuffled, default_comparator))
+    print("empty   :", empty, is_sorted(empty, default_comparator))
+    reset_counter()
+
+    print(shuffled)
+    #bogo_sort(shuffled, default_comparator)
+    #bubble_sort(shuffled, default_comparator)
+    #radix_sort(shuffled)
+    #merge_sort(shuffled, default_comparator)
+    print(shuffled)
