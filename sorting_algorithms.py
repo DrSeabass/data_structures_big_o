@@ -7,6 +7,10 @@ shuffled = None
 empty = []
 
 
+def default_comparitor(a,b):
+    return a < b
+
+
 def make_example_inputs():
     global sorted_data, reversed_order, shuffled
     sorted_data = list(range(DEFAULT_SIZE))
@@ -14,8 +18,9 @@ def make_example_inputs():
     shuffled = sorted_data.copy()
     reversed_order.reverse()
     shuffle(shuffled)
+
     
-def is_sorted(input, comparitor=lambda a,b: a < b):
+def is_sorted(input, comparitor=default_comparitor):
     # I will die on the hill of the empty set being totally ordered
     if len(input) == 0:
         return True
@@ -26,6 +31,10 @@ def is_sorted(input, comparitor=lambda a,b: a < b):
         else:
             prev = el
     return True
+
+
+def bubble_sort(input, comparitor=default_comparitor):
+    raise NotImplemented
     
 
 if __name__ == "__main__":
@@ -34,4 +43,3 @@ if __name__ == "__main__":
     print("reverse :", reversed_order, is_sorted(reversed_order))
     print("shuffled:", shuffled, is_sorted(shuffled))
     print("empty   :", empty, is_sorted(empty))
-    
