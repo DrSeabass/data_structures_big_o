@@ -71,7 +71,7 @@ def counting_sort(input, radix):
     # Bucketize input based on radix
     saw_non_zero = False
     for el in input:
-        bucket = el // radix
+        bucket = el % (radix * 10) // radix
         saw_non_zero = saw_non_zero or bucket > 0
         buckets[bucket].append(el)
     
