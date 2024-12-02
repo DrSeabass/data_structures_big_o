@@ -11,7 +11,7 @@ sorted_data = None
 reversed_order = None
 shuffled = None
 empty = []
-random_values = []
+random_values = None
 comparison_calls = 0
 
 
@@ -54,9 +54,9 @@ if __name__ == "__main__":
     print("empty   :", empty, is_sorted(empty, default_comparator))
     reset_counter()
 
-    print(shuffled)
-    #bogo_sort(shuffled, default_comparator)
-    #bubble_sort(shuffled, default_comparator)
-    #radix_sort(shuffled)
-    #merge_sort(shuffled, default_comparator)
-    print(shuffled)
+    print(random_values)
+    #bogo_sort(random_values, default_comparator)
+    #bubble_sort(random_values, default_comparator)
+    #radix_sort(random_values)
+    #merge_sort(random_values, default_comparator)
+    print(random_values)
