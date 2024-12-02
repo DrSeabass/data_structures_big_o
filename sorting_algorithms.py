@@ -34,7 +34,8 @@ def is_sorted(input, comparitor=default_comparitor):
 
 
 def bogo_sort(input, comparitor=default_comparitor):
-    raise NotImplemented
+    while not is_sorted(input):
+        shuffle(input)
 
 
 def bubble_sort(input, comparitor=default_comparitor):
