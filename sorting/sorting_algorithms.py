@@ -24,24 +24,6 @@ def make_example_inputs():
     for i in range(DEFAULT_SIZE):
         random_values.append(randint(MIN_INT, MAX_INT))
 
-    
-def is_sorted(input, comparitor=default_comparitor):
-    # I will die on the hill of the empty set being totally ordered
-    if len(input) == 0:
-        return True
-    prev = input[0]
-    for el in input[1:]:
-        if not comparitor(prev,el):
-            return False
-        else:
-            prev = el
-    return True
-
-
-def bogo_sort(input, comparitor=default_comparitor):
-    while not is_sorted(input):
-        shuffle(input)
-
 
 class Split():
     start = -1
