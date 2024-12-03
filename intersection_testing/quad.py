@@ -37,3 +37,14 @@ class Quad():
             self.contains(quad_2.corners[2]) or
             self.contains(quad_2.corners[3])
         )
+    
+    def random(max_x, max_y):
+        c1 = Point.random(max_x, max_y)
+        c2 = Point.random(max_x, max_y)
+        c3 = Point.random(max_x, max_y)
+        c4 = Point.random(max_x, max_y)
+        west_x = min(c1.x, c2.x, c3.x, c4.x)
+        east_x = max(c1.x, c2.x, c3.x, c4.x)
+        south_y = min(c1.y, c2.y, c3.y, c4.y)
+        north_y = max(c1.y, c2.y, c3.y, c4.y)
+        return Quad(north_y, east_x, south_y, west_x)
