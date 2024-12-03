@@ -30,7 +30,27 @@ def test_point_tree():
             results_at_this_size.append(Point.test_counts + Rect.test_counts)
         results.append((size, results_at_this_size))
     return results
-            
+
+def test_rect_tree():
+    results = []
+    for size in SIZES:
+        print(f"Running w/ {size} points")
+        results_at_this_size = []
+        for _ in range(SAMPLES):
+            rects = []
+            tree = RectNode(MAX_Y, MAX_X, 0, 0)
+            Point.reset_count()
+            Rect.reset_count()
+            for _ in range(size):
+                rects.append(Rect.random(MAX_X, MAX_Y))
+            for rect in rects:
+                tree.add(rect)
+            for rect in rects:
+                tree.find_intersecting(rect, 5.0)
+            results_at_this_size.append(Point.test_counts + Rect.test_counts)
+        results.append((size, results_at_this_size))
+    return results
+
 
 if __name__ == "__main__":
     print("Exercise 2: Intersection Testing")
