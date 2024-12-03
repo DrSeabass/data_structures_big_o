@@ -66,7 +66,7 @@ class PointNode(SpaceNode):
         self.points = []
 
     def __push_children_down(self):
-        for point in self.points:
+        for point in self.contained:
             if self.northwest.contains(point):
                 self.northwest.add(point)
             elif self.northeast.contains(point):
@@ -77,8 +77,25 @@ class PointNode(SpaceNode):
                 self.southwest.add(point)
             else:
                 raise ValueError("Expected point to be contained in one sub-quadrant")
-        self.points = None
+        self.contained = None
     
     def divide(self) -> list:
         super().divide()
         self.__push_children_down()
+
+    def find_intersecting(self, p1 : Point, radius=0.) -> list:
+        if self.contained is not None:
+            to_ret = []
+            for p2 in self.contained:
+                if p2.intersects(p1,radius):
+                    to_ret.append(p2)
+            return to_ret
+        else:
+            if self.northwest.contains(p1):
+                return self.northwest.find_intersecting(p1)
+            if self.southwest.contains(p1):
+                return self.southwest.find_intersecting(p1)
+            if self.norteast.contains(p1):
+                return self.northeast.find_intersecting(p1)
+            if self.southeast.contains(p1):
+                return self.southeast.find_intersecting(p1)
