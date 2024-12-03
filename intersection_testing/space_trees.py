@@ -10,7 +10,7 @@ class SpaceNode(Rect):
     add_test = None
 
     def __init__(self, n, e, s, w, add_test=None) -> None:
-        super(n,e,s,w)
+        super().__init__(n,e,s,w)
         self.contained = []
         self.add_test = add_test
 
@@ -29,7 +29,7 @@ class SpaceNode(Rect):
 class RectNode(SpaceNode):
 
     def __init__(self, n, e, s, w) -> None:
-        super(n,e,s,w, self.intersects)
+        super().__init__(n,e,s,w, self.intersects)
 
     def __push_children_down(self):
         for Rect in self.contained:
@@ -79,7 +79,7 @@ class PointNode(SpaceNode):
     contained = None
 
     def __init__(self, n, e, s, w) -> None:
-        super(n,e,s,w, self.contains)
+        super().__init__(n,e,s,w, self.contains)
         self.points = []
 
     def __push_children_down(self):
