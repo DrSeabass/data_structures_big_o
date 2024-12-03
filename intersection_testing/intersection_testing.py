@@ -7,7 +7,6 @@ MAX_Y = 480
 SIZES = [1, 10, 25, 50, 100, 1000, 10000]
 SAMPLES = 10
 
-# TODO -- Data series generation based on sample size
 # TODO -- We need to define division strategies for our trees
 # TODO -- Visualiztion tools for points, rectangles, intersection
 
