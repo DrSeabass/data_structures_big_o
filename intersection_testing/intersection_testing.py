@@ -1,7 +1,7 @@
 from point import Point
 from quad import Quad
 
-class Node(Quad):
+class PointNode(Quad):
     northwest = None
     northeast = None
     southeast = None
@@ -35,10 +35,10 @@ class Node(Quad):
     def divide(self) -> list:
         half_width = self.west + (self.east - self.west / 2)
         half_height = self.south + (self.north - self.south)
-        self.northwest = Node(self.north, half_width, half_height, self.west)
-        self.northeast = Node(self.north, self.east, half_height, half_width)
-        self.southeast = Node(half_height, self.east, self.south, half_width)
-        self.southwest = Node(half_height, half_width, self.south, self.west)
+        self.northwest = PointNode(self.north, half_width, half_height, self.west)
+        self.northeast = PointNode(self.north, self.east, half_height, half_width)
+        self.southeast = PointNode(half_height, self.east, self.south, half_width)
+        self.southwest = PointNode(half_height, half_width, self.south, self.west)
         self.__push_children_down()
         
 
