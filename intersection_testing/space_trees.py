@@ -54,6 +54,23 @@ class QuadNode(SpaceNode):
         super().divide()
         self.__push_children_down()
 
+    def find_intersecting(self, q1 : Quad) -> list:
+        to_ret = []
+        if self.contained is not None:
+            for q2 in self.contained:
+                if q2.intersects(q1):
+                    to_ret.append(q2)
+        else:
+            if self.northwest.contains(q1):
+                to_ret += self.northwest.find_intersecting(q1)
+            if self.southwest.contains(q1):
+                to_ret += self.southwest.find_intersecting(q1)
+            if self.norteast.contains(q1):
+                to_ret += self.northeast.find_intersecting(q1)
+            if self.southeast.contains(q1):
+                to_ret += self.southeast.find_intersecting(q1)
+        return to_ret
+
 class PointNode(SpaceNode):
     northwest = None
     northeast = None
