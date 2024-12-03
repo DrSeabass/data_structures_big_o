@@ -1,11 +1,7 @@
 from point import Point
 
 class Rect():
-    north = None
-    east = None
-    south = None
-    west = None
-    corners = None
+    test_counts = 0
 
     def __init__(self, n, e, s, w):
         self.north = n
@@ -18,6 +14,7 @@ class Rect():
         return f"[({self.west}, {self.north}), ({self.east}, {self.north}), ({self.east}, {self.south}), ({self.west}, {self.south})]"
     
     def contains(self, p : Point) -> bool:
+        Rect.test_counts += 1
         return (
             p.x >= self.west and
             p.x <= self.east and
@@ -26,6 +23,7 @@ class Rect():
         )
     
     def intersects(self, Rect_2) -> bool:
+        Rect.test_counts += 1
         return (
             # self contains Rect_2
             (self.north >= Rect_2.north and self.south <= Rect_2.south and self.west <= Rect_2.west and self.east >= Rect_2.east) or
@@ -48,3 +46,6 @@ class Rect():
         south_y = min(c1.y, c2.y, c3.y, c4.y)
         north_y = max(c1.y, c2.y, c3.y, c4.y)
         return Rect(north_y, east_x, south_y, west_x)
+    
+    def reset_count():
+        Rect.test_counts = 0
