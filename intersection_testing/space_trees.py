@@ -1,7 +1,7 @@
 from point import Point
-from quad import Quad
+from rect import Rect
 
-class SpaceNode(Quad):
+class SpaceNode(Rect):
     northwest = None
     northeast = None
     southeast = None
@@ -26,35 +26,35 @@ class SpaceNode(Quad):
         self.southeast = PointNode(half_height, self.east, self.south, half_width)
         self.southwest = PointNode(half_height, half_width, self.south, self.west)
 
-class QuadNode(SpaceNode):
+class RectNode(SpaceNode):
 
     def __init__(self, n, e, s, w) -> None:
         super(n,e,s,w, self.intersects)
 
     def __push_children_down(self):
-        for quad in self.contained:
+        for Rect in self.contained:
             setOne = False
-            if self.northwest.contains(quad):
-                self.northwest.add(quad)
+            if self.northwest.contains(Rect):
+                self.northwest.add(Rect)
                 setOne = True
-            if self.northeast.contains(quad):
-                self.northeast.add(quad)
+            if self.northeast.contains(Rect):
+                self.northeast.add(Rect)
                 setOne = True
-            if self.southeast.contains(quad):
-                self.southeast.add(quad)
+            if self.southeast.contains(Rect):
+                self.southeast.add(Rect)
                 setOne = True
-            if self.southwest.contains(quad):
-                self.southwest.add(quad)
+            if self.southwest.contains(Rect):
+                self.southwest.add(Rect)
                 setOne = True
             if not setOne:
-                raise ValueError("Expected rectangle to intersect at least one sub-quadrant")
+                raise ValueError("Expected rectangle to intersect at least one sub-Rectrant")
         self.contained = None 
 
     def divide(self) -> list:
         super().divide()
         self.__push_children_down()
 
-    def find_intersecting(self, q1 : Quad) -> list:
+    def find_intersecting(self, q1 : Rect) -> list:
         to_ret = []
         if self.contained is not None:
             for q2 in self.contained:
@@ -93,7 +93,7 @@ class PointNode(SpaceNode):
             elif self.southwest.contains(point):
                 self.southwest.add(point)
             else:
-                raise ValueError("Expected point to be contained in one sub-quadrant")
+                raise ValueError("Expected point to be contained in one sub-Rectrant")
         self.contained = None
     
     def divide(self) -> list:

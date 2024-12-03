@@ -1,6 +1,6 @@
 from point import Point
 
-class Quad():
+class Rect():
     north = None
     east = None
     south = None
@@ -25,17 +25,17 @@ class Quad():
             p.y <= self.north
         )
     
-    def intersects(self, quad_2) -> bool:
+    def intersects(self, Rect_2) -> bool:
         return (
-            # self contains quad_2
-            (self.north >= quad_2.north and self.south <= quad_2.south and self.west <= quad_2.west and self.east >= quad_2.east) or
-            # quad_2 contains self
-            (self.north <= quad_2.north and self.south >= quad_2.south and self.west >= quad_2.west and self.east <= quad_2.east) or
-            # self contains one of the corners of quad_2 (previous cases handle abutment)
-            self.contains(quad_2.corners[0]) or
-            self.contains(quad_2.corners[1]) or
-            self.contains(quad_2.corners[2]) or
-            self.contains(quad_2.corners[3])
+            # self contains Rect_2
+            (self.north >= Rect_2.north and self.south <= Rect_2.south and self.west <= Rect_2.west and self.east >= Rect_2.east) or
+            # Rect_2 contains self
+            (self.north <= Rect_2.north and self.south >= Rect_2.south and self.west >= Rect_2.west and self.east <= Rect_2.east) or
+            # self contains one of the corners of Rect_2 (previous cases handle abutment)
+            self.contains(Rect_2.corners[0]) or
+            self.contains(Rect_2.corners[1]) or
+            self.contains(Rect_2.corners[2]) or
+            self.contains(Rect_2.corners[3])
         )
     
     def random(max_x, max_y):
@@ -47,4 +47,4 @@ class Quad():
         east_x = max(c1.x, c2.x, c3.x, c4.x)
         south_y = min(c1.y, c2.y, c3.y, c4.y)
         north_y = max(c1.y, c2.y, c3.y, c4.y)
-        return Quad(north_y, east_x, south_y, west_x)
+        return Rect(north_y, east_x, south_y, west_x)

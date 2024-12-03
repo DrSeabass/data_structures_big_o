@@ -1,6 +1,6 @@
 from point import Point
-from quad import Quad
-from space_trees import PointNode, QuadNode
+from rect import Rect
+from space_trees import PointNode, RectNode
         
 
 if __name__ == "__main__":
