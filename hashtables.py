@@ -4,6 +4,7 @@ class Container():
         self.element = element
 
 class Bucket():
+    test_counts = 0
     def __init__(self):
         self.contents = []
 
@@ -14,6 +15,7 @@ class Bucket():
         new_contents = []
         deleted_count = 0
         for container in self.contents:
+            Bucket.test_counts += 1
             if container.key != key or container.element != element:
                 new_contents.append(container)
             else:
@@ -23,14 +25,19 @@ class Bucket():
     
     def find(self, key):
         for container in self.contents:
+            Bucket.test_counts += 1
             if container.key == key:
                 return container.element
         return None
 
     def contains(self, key):
         return self.find(key) is not None
+    
+    def reset_count():
+        Bucket.test_counts = 0
 
 class HashTable():
+    test_count = 0
 
     def __init__(self, hash_function, max_bucket=100):
         self.max_bucket = max_bucket
@@ -40,20 +47,25 @@ class HashTable():
         self.hash = hash_function
 
     def contains(self, key):
+        HashTable.test_count += 1
         bucket = self.buckets[key % self.max_bucket]
         return bucket.contains(key)
     
     def retrieve(self, key):
+        HashTable.test_count += 1
         bucket = self.buckets[key % self.max_bucket]
         return bucket.find(key)
     
     def add(self, element, key=None):
+        HashTable.test_count += 1
         if key is None:
             key = self.hash(element)
         bucket = self.buckets[key % self.max_bucket]
         bucket.add(key, element)
+        return key
 
     def remove(self, element):
+        HashTable.test_count += 1
         key = self.hash(element)
         bucket = self.buckets[key % self.max_bucket]
         bucket.remove(key, element)
@@ -66,9 +78,12 @@ class HashTable():
         for bucket in self.buckets:
             for container in bucket.contents:
                 # We can end-run the insertion function because we already have the wrapped object
+                HashTable.test_count += 1
                 new_buckets[container.key % new_max].contents.append(container)
         self.buckets = new_buckets
 
+    def reset_count():
+        HashTable.test_count = 0
 
 
 if __name__ == "__main__":
