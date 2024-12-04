@@ -18,6 +18,7 @@ class Bucket():
                 new_contents.append(container)
             else:
                 deleted_count += 1
+        assert(deleted_count < 2)
         return deleted_count
     
     def find(self, key):
@@ -58,7 +59,15 @@ class HashTable():
         bucket.remove(key, element)
 
     def extend(self):
-        raise NotImplemented()
+        new_max = self.max_bucket * 2
+        new_buckets = []
+        for i in range(new_max):
+            new_buckets.append(Bucket())
+        for bucket in self.buckets:
+            for container in bucket.contents:
+                # We can end-run the insertion function because we already have the wrapped object
+                new_buckets[container.key % new_max].contents.append(container)
+        self.buckets = new_buckets
 
 
 
