@@ -1,7 +1,4 @@
-class Container():
-    def __init__(self, key, element):
-        self.key = key
-        self.element = element
+from container import Container
 
 class Bucket():
     test_counts = 0
