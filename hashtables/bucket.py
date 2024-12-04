@@ -1,7 +1,7 @@
 from container import Container
 
 class Bucket():
-    test_counts = 0
+    test_count = 0
     def __init__(self):
         self.contents = []
 
@@ -12,7 +12,7 @@ class Bucket():
         new_contents = []
         deleted_count = 0
         for container in self.contents:
-            Bucket.test_counts += 1
+            Bucket.test_count += 1
             if container.key != key or container.element != element:
                 new_contents.append(container)
             else:
@@ -22,7 +22,7 @@ class Bucket():
     
     def find(self, key):
         for container in self.contents:
-            Bucket.test_counts += 1
+            Bucket.test_count += 1
             if container.key == key:
                 return container.element
         return None
@@ -31,4 +31,4 @@ class Bucket():
         return self.find(key) is not None
     
     def reset_count():
-        Bucket.test_counts = 0
+        Bucket.test_count = 0
