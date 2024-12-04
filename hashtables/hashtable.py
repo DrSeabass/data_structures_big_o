@@ -45,6 +45,7 @@ class HashTable():
                 HashTable.test_count += 1
                 new_buckets[container.key % new_max].contents.append(container)
         self.buckets = new_buckets
+        self.max_bucket = new_max
 
     def reset_count():
         HashTable.test_count = 0
