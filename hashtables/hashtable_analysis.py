@@ -6,13 +6,13 @@ from hashtable import HashTable
 
 SIZE_SCHEDULE = [1, 10, 100, 1000, 10000]
 HASH_SCHEDULE = [ 0, 0.1, 0.25, 0.5, 0.75, 0.95 ]
-SAMPLES = 5
+SAMPLES = 1
 
 def make_hash(max_int, collision_rate):
     if collision_rate == 0:
-        return lambda value : value
+        return ((lambda value : value), max_int)
     modulus = max_int - floor(float(max_int) * collision_rate)
-    return lambda value: value % modulus
+    return (lambda value: value % modulus), modulus
 
 def scaling_study_no_extension():
     results = []
@@ -23,8 +23,8 @@ def scaling_study_no_extension():
             for _ in range(SAMPLES):
                 Bucket.reset_count()
                 HashTable.reset_count()
-                hash_fn = make_hash(size, collision_rate)
-                hash_table = HashTable(hash_fn, max_bucket=size)
+                hash_fn, max_bucket = make_hash(size, collision_rate)
+                hash_table = HashTable(hash_fn, max_bucket=max_bucket)
                 data = list(range(1,size))
                 shuffle(data)
                 # Put it all in
