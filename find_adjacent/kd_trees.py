@@ -31,7 +31,6 @@ class Node():
                 return self.left.find_nearest_neightbor(point, current_best=(self.median, dist))
             else:
                 return self.right.find_nearest_neightbor(point, current_best=current_best)
-        raise NotImplemented()
     
     def dimm_distance(self, point1, point2):
         dimm = self.max_axis % self.depth
@@ -42,8 +41,3 @@ class Node():
         for feat1, feat2 in zip(point1, point2):
             sum += (feat1 - feat2)**2
         return sqrt(sum)
-
-
-
-if __name__ == "__main__":
-    print("Exercise 3b: Nearness in High Dimmensional Space")
