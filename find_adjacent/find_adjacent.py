@@ -9,7 +9,7 @@ SIZE_SCHEDULE = [1, 3, 5, 10, 100, 1000, 10000]
 def generate_random_point(max_dimm, max_value):
     ret = []
     for _ in range(max_dimm):
-        ret.append(randint(max_value))
+        ret.append(randint(0,max_value))
     return ret
 
 def generate_random_points(samples, max_dimm, max_value):
