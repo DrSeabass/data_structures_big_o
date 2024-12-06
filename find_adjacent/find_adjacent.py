@@ -23,11 +23,10 @@ def scaling_study():
     for size in SIZE_SCHEDULE:
         this_size = []
         for _ in range(SAMPLES):
-            this_sample = None
+            Node.reset_count()
             points = generate_random_points(size, MAX_DIMM, MAX_VALUE)
             tree = Node(MAX_DIMM, points)
-            # TODO - instrument tree with counting
-            this_size.append(this_sample)
+            this_size.append(Node.test_count)
         to_ret.append(this_size)
     return to_ret
 
